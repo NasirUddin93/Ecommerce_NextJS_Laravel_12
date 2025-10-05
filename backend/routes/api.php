@@ -9,7 +9,10 @@ Route::get('/user', function (Request $request) {
     return $request->user();
 })->middleware('auth:sanctum');
 
-Route::get('/admin/login', [AuthController::class, 'authenticate']);
+// Admin Authentication Login
+Route::post('/admin/login', [AuthController::class, 'authenticate']);
+
+
 Route::post('/brands/store', [BrandController::class, 'store']);
 Route::get('/brands', [BrandController::class, 'index']);
 Route::get('/brands/{id}', [BrandController::class, 'show']);
