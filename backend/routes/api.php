@@ -32,5 +32,11 @@ Route::get('/sizes', [SizeController::class, 'index']);
 Route::get('/sizes/{id}', [SizeController::class, 'show']);
 Route::put('/sizes/{id}', [SizeController::class, 'update']);
 
+// Shipping Routes
+Route::post('/shippings/store', [ShippingController::class, 'store']);
+Route::get('/shippings', [ShippingController::class, 'index']);
+Route::get('/shippings/{id}', [ShippingController::class, 'show']);
+Route::put('/shippings/{id}', [ShippingController::class, 'update']);
+
 
 
