@@ -4,9 +4,11 @@ use App\Http\Controllers\admin\AuthController;
 use App\Http\Controllers\admin\BrandController;
 use App\Http\Controllers\admin\CategoryController;
 use App\Http\Controllers\admin\SizeController;
+// use App\Http\Controllers\admin\ShippingController;
 use App\Http\Controllers\admin\ShippingController;
 use App\Http\Controllers\admin\ProductController;
 use App\Http\Controllers\admin\ProductImageController;
+use App\Http\Controllers\admin\CouponController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -63,6 +65,26 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
         Route::delete('/{id}', [ProductImageController::class, 'destroy']);
         Route::post('/restore/{id}', [ProductImageController::class, 'restore']);
     });
+
+    // Admin Shipping Routes
+
+    Route::prefix('shippings')->group(function () {
+    Route::get('/', [ShippingController::class, 'index']);
+    Route::post('/', [ShippingController::class, 'store']);
+    Route::get('/{id}', [ShippingController::class, 'show']);
+    Route::put('/{id}', [ShippingController::class, 'update']);
+});
+
+    // Admin Coupon Routes
+    Route::prefix('coupons')->group(function () {
+        Route::get('/', [CouponController::class, 'index']);
+        Route::post('/', [CouponController::class, 'store']);
+        Route::get('/{id}', [CouponController::class, 'show']);
+        Route::put('/{id}', [CouponController::class, 'update']);
+    }); 
+
+
+
 
 
 });
