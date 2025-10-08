@@ -4,9 +4,12 @@ use App\Http\Controllers\admin\AuthController;
 use App\Http\Controllers\admin\BrandController;
 use App\Http\Controllers\admin\CategoryController;
 use App\Http\Controllers\admin\SizeController;
-use App\Http\Controllers\admin\ShippingController;
+// use App\Http\Controllers\admin\ShippingController;
+use App\Http\Controllers\admin\ShippingMethodController;
 use App\Http\Controllers\admin\ProductController;
 use App\Http\Controllers\admin\ProductImageController;
+use App\Http\Controllers\admin\NotificationController;
+// use App\Http\Controllers\admin\CouponController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -36,11 +39,18 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::get('/sizes/{id}', [SizeController::class, 'show']);
     Route::put('/sizes/{id}', [SizeController::class, 'update']);
 
-    // Admin Shipping Routes
-    Route::post('/shippings/store', [ShippingController::class, 'store']);
-    Route::get('/shippings', [ShippingController::class, 'index']);
-    Route::get('/shippings/{id}', [ShippingController::class, 'show']);
-    Route::put('/shippings/{id}', [ShippingController::class, 'update']);
+    // // Admin Shipping Routes
+    // Route::post('/shippings/store', [ShippingController::class, 'store']);
+    // Route::get('/shippings', [ShippingController::class, 'index']);
+    // Route::get('/shippings/{id}', [ShippingController::class, 'show']);
+    // Route::put('/shippings/{id}', [ShippingController::class, 'update']);
+
+
+    // Admin Shipping Method Routes
+    Route::post('/shipping-methods/store', [ShippingMethodController::class, 'store']);
+    Route::get('/shipping-methods', [ShippingMethodController::class, 'index']);
+    Route::get('/shipping-methods/{id}', [ShippingMethodController::class, 'show']);
+    Route::put('/shipping-methods/{id}', [ShippingMethodController::class, 'update']);
 
         // Admin Product Image Routes
     // Route::prefix('product-images')->group(function () {
@@ -72,6 +82,17 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
         Route::post('/restore/{id}', [App\Http\Controllers\Admin\OrderController::class, 'restore']);
         Route::delete('/force-delete/{id}', [App\Http\Controllers\Admin\OrderController::class, 'forceDelete']);
     });
+    
+    // Admin Notification Routes
+    Route::prefix('notifications')->group(function () {
+    Route::get('/', [NotificationController::class, 'index']);
+    Route::post('/', [NotificationController::class, 'store']);
+    Route::get('/{id}', [NotificationController::class, 'show']);
+    Route::put('/{id}', [NotificationController::class, 'update']);
+
+    // Optional delete route (if you want to allow deletion)
+    Route::delete('/{id}', [NotificationController::class, 'destroy']);
+});
 
 
 });
