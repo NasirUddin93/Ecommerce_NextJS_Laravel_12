@@ -6,7 +6,6 @@ use App\Http\Controllers\admin\CategoryController;
 use App\Http\Controllers\admin\SizeController;
 use App\Http\Controllers\admin\ShippingController;
 use App\Http\Controllers\admin\ProductController;
-use App\Http\Controllers\admin\ProductImageController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -42,26 +41,16 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::get('/shippings/{id}', [ShippingController::class, 'show']);
     Route::put('/shippings/{id}', [ShippingController::class, 'update']);
 
-        // Admin Product Image Routes
-    // Route::prefix('product-images')->group(function () {
-    //     Route::get('/', [ProductImageController::class, 'index']);
-    //     Route::post('/', [ProductImageController::class, 'store']);
-    //     Route::get('/{id}', [ProductImageController::class, 'show']);
-    //     Route::put('/{id}', [ProductImageController::class, 'update']);
-    //     Route::delete('/{id}', [ProductImageController::class, 'destroy']);
-    //     Route::post('/restore/{id}', [ProductImageController::class, 'restore']);
-    // });
-
     // Admin Product Routes
-    // Route::prefix('products')->group(function () {
-    //     Route::get('/', [ProductController::class, 'index']);
-    //     Route::get('/{id}', [ProductController::class, 'show']);
-    //     Route::post('/', [ProductController::class, 'store']);
-    //     Route::put('/{id}', [ProductController::class, 'update']);
-    //     Route::delete('/{id}', [ProductController::class, 'destroy']);
-    //     Route::post('/restore/{id}', [ProductController::class, 'restore']);
-    //     Route::delete('/force-delete/{id}', [ProductController::class, 'forceDelete']);
-    // });
+    Route::prefix('products')->group(function () {
+        Route::get('/', [ProductController::class, 'index']);
+        Route::get('/{id}', [ProductController::class, 'show']);
+        Route::post('/', [ProductController::class, 'store']);
+        Route::put('/{id}', [ProductController::class, 'update']);
+        Route::delete('/{id}', [ProductController::class, 'destroy']);
+        Route::post('/restore/{id}', [ProductController::class, 'restore']);
+        Route::delete('/force-delete/{id}', [ProductController::class, 'forceDelete']);
+    });
     // Admin Order Routes
     Route::prefix('orders')->group(function () {
         Route::get('/', [App\Http\Controllers\Admin\OrderController::class, 'index']);
