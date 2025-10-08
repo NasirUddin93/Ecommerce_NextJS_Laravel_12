@@ -6,8 +6,18 @@ use App\Http\Controllers\admin\CategoryController;
 use App\Http\Controllers\admin\SizeController;
 use App\Http\Controllers\admin\ShippingController;
 use App\Http\Controllers\admin\ProductController;
+use App\Http\Controllers\Admin\ProductVariantController;
+use App\Http\Controllers\Admin\WishlistController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+
+
+
+
+
+
+
+
 
 // Route::get('/user', function (Request $request) {
 //     return $request->user();
@@ -51,6 +61,22 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
         Route::post('/restore/{id}', [ProductController::class, 'restore']);
         Route::delete('/force-delete/{id}', [ProductController::class, 'forceDelete']);
     });
+    //Product variants
+    // Route::prefix('admin')->group(function () {
+        Route::get('/product-variants', [ProductVariantController::class, 'index']);
+        Route::post('/product-variants', [ProductVariantController::class, 'store']);
+        Route::get('/product-variants/{id}', [ProductVariantController::class, 'show']);
+        Route::put('/product-variants/{id}', [ProductVariantController::class, 'update']);
+        Route::delete('/product-variants/{id}', [ProductVariantController::class, 'destroy']);
+    // });
+
+    // Route::prefix('admin')->group(function () {
+        Route::get('/wishlists', [WishlistController::class, 'index']);
+        Route::post('/wishlists', [WishlistController::class, 'store']);
+        Route::get('/wishlists/{id}', [WishlistController::class, 'show']);
+        Route::delete('/wishlists/{id}', [WishlistController::class, 'destroy']);
+    // });
+
     // Admin Order Routes
     Route::prefix('orders')->group(function () {
         Route::get('/', [App\Http\Controllers\Admin\OrderController::class, 'index']);
@@ -61,6 +87,8 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
         Route::post('/restore/{id}', [App\Http\Controllers\Admin\OrderController::class, 'restore']);
         Route::delete('/force-delete/{id}', [App\Http\Controllers\Admin\OrderController::class, 'forceDelete']);
     });
+
+
 
 
 });
