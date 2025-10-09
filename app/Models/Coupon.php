@@ -22,11 +22,11 @@ class Coupon extends Model
         'status',
     ];
 
-    protected $casts = [
-        'discount_value' => 'decimal:2',
-        'min_purchase_amount' => 'decimal:2',
-        'max_discount_amount' => 'decimal:2',
-        'valid_from' => 'date',
-        'valid_to' => 'date',
-    ];
+    // protected $casts = [
+    //     'discount_value' => 'decimal:2',
+    //     'min_purchase_amount' => 'decimal:2',
+    //     'max_discount_amount' => 'decimal:2',
+    //     'valid_from' => 'date',
+    //     'valid_to' => 'date',
+    // ];
 }

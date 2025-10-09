@@ -3,18 +3,24 @@
 use App\Http\Controllers\admin\AuthController;
 use App\Http\Controllers\admin\BrandController;
 use App\Http\Controllers\admin\CategoryController;
+use App\Http\Controllers\admin\CouponController;
+use App\Http\Controllers\admin\InventoryLogController;
+use App\Http\Controllers\admin\OrderItemController;
 use App\Http\Controllers\admin\SizeController;
 use App\Http\Controllers\admin\ShippingController;
 use App\Http\Controllers\admin\ProductController;
-use App\Http\Controllers\Admin\ProductVariantController;
-use App\Http\Controllers\Admin\WishlistController;
+use App\Http\Controllers\admin\ProductVariantController;
+use App\Http\Controllers\admin\ReviewController;
+use App\Http\Controllers\admin\WishlistController;
+use App\Http\Controllers\CouponUsageController;
+use App\Http\Controllers\DiscountController;
+use App\Http\Controllers\NotificationController;
+use App\Http\Controllers\OrderShippingController;
+use App\Http\Controllers\PaymentController;
+use App\Http\Controllers\ShippingMethodController;
+use App\Http\Controllers\TransactionController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-
-
-
-
-
 
 
 
@@ -87,6 +93,28 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
         Route::post('/restore/{id}', [App\Http\Controllers\Admin\OrderController::class, 'restore']);
         Route::delete('/force-delete/{id}', [App\Http\Controllers\Admin\OrderController::class, 'forceDelete']);
     });
+
+        // order items
+        Route::get('/order-items', [OrderItemController::class, 'index']);
+        Route::get('order-items/trashed', [OrderItemController::class, 'trashed']);
+        Route::get('order-items/trashed', [OrderItemController::class, 'trashed']);
+        Route::post('order-items/{id}/restore', [OrderItemController::class, 'restore']);
+        Route::delete('order-items/{id}/force-delete', [OrderItemController::class, 'forceDelete']);
+
+        // Reviews
+        Route::get('/reviews',[ReviewController::class,'index']);
+        // Inventory Log
+        Route::get('/inventory-log',[InventoryLogController::class,'index']);
+        Route::get('/discounts',[DiscountController::class,'index']);
+        Route::get('/notifications',[NotificationController::class,'index']);
+        Route::get('/shipping-methods',[ShippingMethodController::class,'index']);
+
+        Route::get('/coupons',[CouponController::class,'index']);
+        Route::get('/coupon-usages',[CouponUsageController::class,'index']);
+        Route::get('/order-shippings',[OrderShippingController::class,'index']);
+        Route::get('/transactions',[TransactionController::class,'index']);
+        Route::get('/payments',[PaymentController::class,'index']);
+
 
 
 

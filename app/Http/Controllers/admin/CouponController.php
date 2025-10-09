@@ -3,18 +3,18 @@
 namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Coupon;
 use Illuminate\Http\Request;
+use App\Models\Coupon;
 use Illuminate\Support\Facades\Validator;
 
 class CouponController extends Controller
 {
-    /**
+     /**
      * Display all coupons
      */
     public function index()
     {
-        $coupons = Coupon::orderByDesc('id')->get();
+        $coupons = Coupon::get();
 
         return response()->json([
             'status' => 200,
