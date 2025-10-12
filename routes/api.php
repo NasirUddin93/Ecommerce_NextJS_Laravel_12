@@ -11,6 +11,7 @@ use App\Http\Controllers\admin\ShippingController;
 use App\Http\Controllers\admin\ProductController;
 use App\Http\Controllers\admin\ProductVariantController;
 use App\Http\Controllers\admin\ReviewController;
+use App\Http\Controllers\admin\UserController;
 use App\Http\Controllers\admin\WishlistController;
 use App\Http\Controllers\CouponUsageController;
 use App\Http\Controllers\DiscountController;
@@ -33,6 +34,9 @@ use Illuminate\Support\Facades\Route;
 Route::post('/admin/login', [AuthController::class, 'authenticate']);
 
 Route::group(['middleware' => ['auth:sanctum']], function () {
+
+    Route::get('/users', [UserController::class, 'index']);
+
     // Admin Brand Routes
     Route::post('/brands/store', [BrandController::class, 'store']);
     Route::get('/brands', [BrandController::class, 'index']);
