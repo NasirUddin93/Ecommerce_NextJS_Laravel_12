@@ -27,7 +27,7 @@ class BrandController extends Controller
             return redirect()->json([
                 'status' => 400,
                 'errors' => $validator->errors(),
-            ]);
+            ],400);
         }
         // Create and save the new brand
         $brand = new Brand();
@@ -38,7 +38,8 @@ class BrandController extends Controller
         return response()->json([
             'status' => 200,
             'message' => 'Brand created successfully',
-        ]);
+            'data' => $brand,
+        ],200);
     }
     // show brand by id
     public function show($id)
