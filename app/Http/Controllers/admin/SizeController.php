@@ -15,7 +15,7 @@ class SizeController extends Controller
             return response()->json([
             'status' => 200,
             'data' => $sizes,
-        ]);
+            ]);
     }
     public function store(Request $request)
     {
@@ -27,7 +27,7 @@ class SizeController extends Controller
             return redirect()->json([
                 'status' => 400,
                 'errors' => $validator->errors(),
-            ]);
+            ],400);
         }
         // Create and save the new brand
         $size = new Size();
@@ -38,7 +38,7 @@ class SizeController extends Controller
         return response()->json([
             'status' => 200,
             'message' => 'Size created successfully',
-        ]);
+        ],200);
     }
     // show brand by id
     public function show($id)
