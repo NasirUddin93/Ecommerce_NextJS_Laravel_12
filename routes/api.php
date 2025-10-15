@@ -109,11 +109,31 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
         Route::get('/reviews',[ReviewController::class,'index']);
         // Inventory Log
         Route::get('/inventory-log',[InventoryLogController::class,'index']);
+        // Discounts
         Route::get('/discounts',[DiscountController::class,'index']);
-        Route::get('/notifications',[NotificationController::class,'index']);
-        Route::get('/shipping-methods',[ShippingMethodController::class,'index']);
+        Route::post('/discounts',[DiscountController::class,'store']);
+        Route::get('/discounts/{id}',[DiscountController::class,'show']);
+        Route::put('/discounts/{id}',[DiscountController::class,'update']);
+        Route::delete('/discounts/{id}',[DiscountController::class,'destroy']);
 
+        // Notifications
+        Route::get('/notifications',[NotificationController::class,'index']);
+        Route::post('/notifications',[NotificationController::class,'store']);
+        Route::get('/notifications/{id}',[NotificationController::class,'show']);
+        Route::put('/notifications/{id}',[NotificationController::class,'update']);
+        Route::delete('/notifications/{id}',[NotificationController::class,'destroy']); 
+
+        // Shipping Methods
+        Route::get('/shipping-methods',[ShippingMethodController::class,'index']);
+        Route::post('/shipping-methods',[ShippingMethodController::class,'store']);
+        
+        // Coupons
         Route::get('/coupons',[CouponController::class,'index']);
+        Route::post('/coupons',[CouponController::class,'store']);
+        // Route::get('/coupons/{id}',[CouponController::class,'show']);
+        Route::put('/coupons/{id}',[CouponController::class,'update']);
+        Route::delete('/coupons/{id}',[CouponController::class,'destroy']); 
+
         Route::get('/coupon-usages',[CouponUsageController::class,'index']);
         Route::get('/order-shippings',[OrderShippingController::class,'index']);
         Route::get('/transactions',[TransactionController::class,'index']);
