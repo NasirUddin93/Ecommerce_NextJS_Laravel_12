@@ -30,7 +30,7 @@ class CategoryController extends Controller
             return response()->json([
                 'status' => 400,
                 'errors' => $validator->errors(),
-            ]);
+            ],400);
         }
         // Create and save the new category
         $category = new Category();
@@ -43,7 +43,7 @@ class CategoryController extends Controller
             'status' => 200,
             'message' => 'Category created successfully',
             'data' => $category
-        ]);
+        ],200);
     }
     // show category by id
     public function show($id)

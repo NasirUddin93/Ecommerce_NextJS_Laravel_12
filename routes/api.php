@@ -44,7 +44,7 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::put('/brands/{id}', [BrandController::class, 'update']);
 
     // Admin Category Routes
-    Route::post('/categories/store', [CategoryController::class, 'store']);
+    Route::post('/categories/', [CategoryController::class, 'store']);
     Route::get('/categories', [CategoryController::class, 'index']);
     Route::get('/categories/{id}', [CategoryController::class, 'show']);
     Route::put('/categories/{id}', [CategoryController::class, 'update']);
