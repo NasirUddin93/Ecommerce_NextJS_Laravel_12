@@ -50,7 +50,7 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::put('/categories/{id}', [CategoryController::class, 'update']);
 
     // Admin Sizes Routes
-    Route::post('/sizes/store', [SizeController::class, 'store']);
+    Route::post('/sizes/', [SizeController::class, 'store']);
     Route::get('/sizes', [SizeController::class, 'index']);
     Route::get('/sizes/{id}', [SizeController::class, 'show']);
     Route::put('/sizes/{id}', [SizeController::class, 'update']);
