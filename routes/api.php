@@ -22,6 +22,7 @@ use App\Http\Controllers\ShippingMethodController;
 use App\Http\Controllers\TransactionController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admin\OrderController;
 
 
 
@@ -89,13 +90,13 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
 
     // Admin Order Routes
     Route::prefix('orders')->group(function () {
-        Route::get('/', [App\Http\Controllers\Admin\OrderController::class, 'index']);
-        Route::get('/{id}', [App\Http\Controllers\Admin\OrderController::class, 'show']);
-        Route::post('/', [App\Http\Controllers\Admin\OrderController::class, 'store']);
-        Route::put('/{id}', [App\Http\Controllers\Admin\OrderController::class, 'update']);
-        Route::delete('/{id}', [App\Http\Controllers\Admin\OrderController::class, 'destroy']);
-        Route::post('/restore/{id}', [App\Http\Controllers\Admin\OrderController::class, 'restore']);
-        Route::delete('/force-delete/{id}', [App\Http\Controllers\Admin\OrderController::class, 'forceDelete']);
+        Route::get('/', [OrderController::class, 'index']);
+        Route::get('/{id}', [OrderController::class, 'show']);
+        Route::post('/', [OrderController::class, 'store']);
+        Route::put('/{id}', [OrderController::class, 'update']);
+        Route::delete('/{id}', [OrderController::class, 'destroy']);
+        Route::post('/restore/{id}', [OrderController::class, 'restore']);
+        Route::delete('/force-delete/{id}', [OrderController::class, 'forceDelete']);
     });
 
         // order items
@@ -121,18 +122,18 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
         Route::post('/notifications',[NotificationController::class,'store']);
         Route::get('/notifications/{id}',[NotificationController::class,'show']);
         Route::put('/notifications/{id}',[NotificationController::class,'update']);
-        Route::delete('/notifications/{id}',[NotificationController::class,'destroy']); 
+        Route::delete('/notifications/{id}',[NotificationController::class,'destroy']);
 
         // Shipping Methods
         Route::get('/shipping-methods',[ShippingMethodController::class,'index']);
         Route::post('/shipping-methods',[ShippingMethodController::class,'store']);
-        
+
         // Coupons
         Route::get('/coupons',[CouponController::class,'index']);
         Route::post('/coupons',[CouponController::class,'store']);
         // Route::get('/coupons/{id}',[CouponController::class,'show']);
         Route::put('/coupons/{id}',[CouponController::class,'update']);
-        Route::delete('/coupons/{id}',[CouponController::class,'destroy']); 
+        Route::delete('/coupons/{id}',[CouponController::class,'destroy']);
 
         Route::get('/coupon-usages',[CouponUsageController::class,'index']);
         Route::get('/order-shippings',[OrderShippingController::class,'index']);
