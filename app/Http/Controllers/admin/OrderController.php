@@ -41,17 +41,19 @@ class OrderController extends Controller
         if ($validator->fails()) {
             return response()->json([
                 'success' => false,
+                'status' => 400,
                 'errors' => $validator->errors(),
-            ], 422);
+            ], 400);
         }
 
         $order = Order::create($validator->validated());
 
         return response()->json([
             'success' => true,
+            'status' => 200,
             'message' => 'Order created successfully',
             'data' => $order
-        ], 201);
+        ], 200);
     }
 
     /**
