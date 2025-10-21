@@ -108,8 +108,22 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
 
         // Reviews
         Route::get('/reviews',[ReviewController::class,'index']);
+        Route::post('/reviews',[ReviewController::class,'store']);
+        Route::get('/reviews/{id}',[ReviewController::class,'show']);
+        Route::put('/reviews/{id}',[ReviewController::class,'update']);
+        Route::delete('/reviews/{id}',[ReviewController::class,'destroy']); 
+
+
+
         // Inventory Log
         Route::get('/inventory-log',[InventoryLogController::class,'index']);
+        Route::post('/inventory-log',[InventoryLogController::class,'store']);
+        Route::get('/inventory-log/{id}',[InventoryLogController::class,'show']);
+        Route::put('/inventory-log/{id}',[InventoryLogController::class,'update']);
+        Route::delete('/inventory-log/{id}',[InventoryLogController::class,'destroy']); 
+
+
+
         // Discounts
         Route::get('/discounts',[DiscountController::class,'index']);
         Route::post('/discounts',[DiscountController::class,'store']);
@@ -136,7 +150,15 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
         Route::delete('/coupons/{id}',[CouponController::class,'destroy']);
 
         Route::get('/coupon-usages',[CouponUsageController::class,'index']);
+
+        // Order Shippings  
         Route::get('/order-shippings',[OrderShippingController::class,'index']);
+        Route::post('/order-shippings',[OrderShippingController::class,'store']);
+        Route::get('/order-shippings/{id}',[OrderShippingController::class,'show']);
+        Route::put('/order-shippings/{id}',[OrderShippingController::class,'update']);
+        Route::delete('/order-shippings/{id}',[OrderShippingController::class,'destroy']);  
+
+        // Transactions
         Route::get('/transactions',[TransactionController::class,'index']);
 
         // Payments Routes  
