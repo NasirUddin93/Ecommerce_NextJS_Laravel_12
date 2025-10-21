@@ -138,7 +138,13 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
         Route::get('/coupon-usages',[CouponUsageController::class,'index']);
         Route::get('/order-shippings',[OrderShippingController::class,'index']);
         Route::get('/transactions',[TransactionController::class,'index']);
+
+        // Payments Routes  
         Route::get('/payments',[PaymentController::class,'index']);
+        Route::post('/payments',[PaymentController::class,'store']);
+        Route::get('/payments/{id}',[PaymentController::class,'show']);
+        Route::put('/payments/{id}',[PaymentController::class,'update']);
+        Route::delete('/payments/{id}',[PaymentController::class,'destroy']);       
 
 
 
