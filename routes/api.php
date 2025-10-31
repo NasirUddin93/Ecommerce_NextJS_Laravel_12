@@ -101,6 +101,7 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
 
         // order items
         Route::get('/order-items', [OrderItemController::class, 'index']);
+        Route::post('/order-items', [OrderItemController::class, 'store']);
         Route::get('order-items/trashed', [OrderItemController::class, 'trashed']);
         Route::get('order-items/trashed', [OrderItemController::class, 'trashed']);
         Route::post('order-items/{id}/restore', [OrderItemController::class, 'restore']);
@@ -149,7 +150,10 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
         Route::put('/coupons/{id}',[CouponController::class,'update']);
         Route::delete('/coupons/{id}',[CouponController::class,'destroy']);
 
+        // Coupon Usages    
+
         Route::get('/coupon-usages',[CouponUsageController::class,'index']);
+        Route::post('/coupon-usages',[CouponUsageController::class,'store']);
 
         // Order Shippings  
         Route::get('/order-shippings',[OrderShippingController::class,'index']);
