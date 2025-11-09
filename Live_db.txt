@@ -1,0 +1,5 @@
+
+
+Database: softnova_ecommerce_nextjs_laravel_12_db_01
+User: softnova_nasir
+Password: softnova_user
